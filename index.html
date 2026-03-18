@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="नीली डोरी — Women's clothing in cotton and Indian prints. Modest to modern. Launching soon.">
+  <meta property="og:title" content="नीली डोरी — The cloth you've been looking for.">
+  <title>नीली डोरी — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:     #FAF5EE;
+      --navy:      #0D1A44;
+      --red:       #B8311A;
+      --gold:      #C9930A;
+      --brown:     #5A3A26;
+      --blue:      #1A4A9C;
+      --text-main: #0E0A04;
+      --text-soft: #4A3728;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text-main);
+      font-family: 'Cormorant Garamond', 'Georgia', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ─── Fabric image background ────────────────────── */
+    .fabric-bg {
+      position: fixed; inset: 0;
+      z-index: 0; pointer-events: none;
+      background-image: url('Gemini_Generated_Image_8723yo8723yo8723.png');
+      background-size: cover;
+      background-position: center;
+      transform: rotate(90deg) scale(1.55);
+      opacity: 0.065;
+    }
+
+    /* ─── Corner Brackets ─────────────────────────────── */
+    .corner {
+      position: fixed; width: 36px; height: 36px;
+      pointer-events: none; z-index: 10;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner.tl { top: 22px; left: 22px; }
+    .corner.tr { top: 22px; right: 22px; transform: scaleX(-1); }
+    .corner.bl { bottom: 22px; left: 22px; transform: scaleY(-1); }
+    .corner.br { bottom: 22px; right: 22px; transform: scale(-1); }
+
+    /* ─── Main wrapper ────────────────────────────────── */
+    .page {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 660px;
+      padding: 72px 40px 72px;
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── Brand mark (typographic logo) ──────────────── */
+    .brand-mark {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .brand-word-neeli {
+      font-family: 'Noto Serif Devanagari', serif;
+      font-size: clamp(56px, 9vw, 90px);
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: 10px;
+      line-height: 1;
+    }
+
+    /* thin gold thread between the two words */
+    .brand-thread {
+      display: flex; align-items: center;
+      gap: 8px; margin: 6px 0 4px;
+    }
+    .brand-thread-line {
+      width: 40px; height: 1px;
+      background: var(--gold); opacity: 0.7;
+    }
+    .brand-thread-dot {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%; opacity: 0.85;
+    }
+
+    .brand-word-dori {
+      font-family: 'Noto Serif Devanagari', serif;
+      font-size: clamp(62px, 10vw, 100px);
+      font-weight: 500;
+      color: var(--red);
+      letter-spacing: 8px;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(13px, 1.8vw, 16px);
+      font-weight: 300; font-style: italic;
+      color: var(--brown); text-align: center;
+      margin-top: 14px; letter-spacing: 0.5px;
+    }
+
+    /* ─── Ornament ────────────────────────────────────── */
+    .ornament {
+      display: flex; align-items: center; gap: 10px;
+      margin: 24px 0;
+    }
+    .ornament-line {
+      width: 68px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .ornament-line.rev { background: linear-gradient(to left, transparent, var(--gold)); }
+    .ornament-diamonds { display: flex; gap: 5px; align-items: center; }
+    .ornament-diamonds span {
+      display: block; width: 4px; height: 4px;
+      background: var(--navy); transform: rotate(45deg);
+    }
+    .ornament-diamonds span:nth-child(2) { background: var(--red); width: 6px; height: 6px; }
+
+    /* ─── Launching badge ─────────────────────────────── */
+    .launching-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(13,26,68,0.45);
+      padding: 9px 24px; margin-bottom: 28px;
+    }
+    .launching-badge span {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 300;
+      letter-spacing: 6px; color: var(--navy); text-transform: uppercase;
+    }
+    .dot {
+      width: 5px; height: 5px; background: var(--red);
+      border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.6); }
+    }
+
+    /* ─── Headline ────────────────────────────────────── */
+    .headline {
+      font-size: clamp(24px, 3.8vw, 38px);
+      font-weight: 300; font-style: italic;
+      color: var(--navy); text-align: center; line-height: 1.55;
+    }
+    .headline strong { font-style: normal; font-weight: 500; color: var(--red); }
+    .headline em.gold { font-style: normal; color: var(--gold); }
+
+    /* ─── First collection chips ──────────────────────── */
+    .first-launch {
+      margin-top: 20px;
+      display: flex; align-items: center;
+      gap: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .first-launch-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 300;
+      letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
+    }
+    .launch-items { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; }
+    .launch-item {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 200;
+      letter-spacing: 3px; color: var(--navy);
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border: 1px solid rgba(13,26,68,0.2);
+    }
+
+    /* ─── Mission text ────────────────────────────────── */
+    .mission-text {
+      font-size: clamp(13px, 1.8vw, 16px);
+      font-weight: 300; color: var(--text-soft);
+      text-align: center; line-height: 2;
+      max-width: 500px; margin-top: 20px;
+    }
+    .mission-text em { font-style: italic; color: var(--brown); }
+
+    /* ─── Three pillars — no titles ───────────────────── */
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      width: 100%; max-width: 540px; margin: 36px 0 0;
+    }
+    .pillar-divider { background: rgba(13,26,68,0.1); align-self: stretch; margin: 6px 0; }
+    .pillar {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      padding: 4px 16px; gap: 7px;
+    }
+    .pillar-icon { font-size: 18px; line-height: 1; }
+    .pillar-desc {
+      font-size: 12.5px; font-style: italic;
+      color: var(--text-soft); line-height: 1.55; font-weight: 300;
+    }
+
+    /* ─── Contact form ────────────────────────────────── */
+    .connect-section {
+      width: 100%; max-width: 500px;
+      margin-top: 48px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 13px;
+    }
+    .connect-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 300;
+      letter-spacing: 5px; color: var(--gold);
+      text-transform: uppercase; text-align: center;
+    }
+    .connect-heading {
+      font-size: clamp(16px, 2.2vw, 21px);
+      font-style: italic; font-weight: 300;
+      color: var(--navy); text-align: center; line-height: 1.65;
+    }
+
+    .contact-form {
+      width: 100%;
+      border-top: 1px solid rgba(13,26,68,0.11);
+      border-bottom: 1px solid rgba(13,26,68,0.11);
+      padding: 22px 0 18px;
+      display: flex; flex-direction: column; gap: 14px;
+      background: transparent;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 300;
+      letter-spacing: 3.5px; color: var(--navy); text-transform: uppercase;
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: transparent; border: none;
+      border-bottom: 1px solid rgba(13,26,68,0.16);
+      padding: 6px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-weight: 300;
+      color: var(--text-main); outline: none;
+      transition: border-color 0.25s; width: 100%; resize: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(107,90,74,0.35); font-style: italic; }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus { border-color: var(--navy); }
+    .form-field textarea { min-height: 52px; }
+    .form-field select { -webkit-appearance: none; appearance: none; cursor: pointer; color: var(--text-soft); }
+    .form-field select option { color: var(--text-main); }
+
+    .form-submit {
+      align-self: center; margin-top: 4px;
+      background: var(--navy); color: #FAF5EE;
+      border: none; padding: 11px 38px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 300;
+      letter-spacing: 5px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--red); }
+
+    .form-success {
+      display: none; flex-direction: column;
+      align-items: center; gap: 12px;
+      padding: 24px 0; text-align: center;
+    }
+    .success-mark {
+      width: 32px; height: 32px;
+      border: 1px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 14px;
+    }
+    .form-success p { font-size: 15px; font-style: italic; font-weight: 300; color: var(--navy); line-height: 1.7; }
+    .form-success small { font-family: 'Josefin Sans', sans-serif; font-size: 8px; letter-spacing: 3px; color: var(--text-soft); text-transform: uppercase; }
+
+    /* ─── Bottom contact ──────────────────────────────── */
+    .bottom-contact {
+      margin-top: 50px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 11px;
+    }
+    .contact-links { display: flex; gap: 26px; align-items: center; }
+    .contact-link {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 200;
+      letter-spacing: 2px; color: var(--navy);
+      text-decoration: none; text-transform: lowercase;
+      border-bottom: 1px solid rgba(13,26,68,0.15);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .contact-link:hover { color: var(--red); border-color: var(--red); }
+    .contact-sep { width: 1px; height: 13px; background: rgba(13,26,68,0.15); }
+
+    .bottom-brand {
+      margin-top: 28px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 5px;
+    }
+    .brand-hindi-small {
+      font-family: 'Noto Serif Devanagari', serif;
+      font-size: 18px; font-weight: 300;
+      color: var(--navy); letter-spacing: 4px; opacity: 0.22;
+    }
+    .bottom-url {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 200;
+      letter-spacing: 5px; color: var(--text-soft);
+      text-transform: uppercase; opacity: 0.4;
+    }
+
+    /* ─── Fade-in ─────────────────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(13px); animation: fadeUp 0.85s ease forwards; }
+    .page > *:nth-child(1)  { animation-delay: 0.08s; }
+    .page > *:nth-child(2)  { animation-delay: 0.20s; }
+    .page > *:nth-child(3)  { animation-delay: 0.32s; }
+    .page > *:nth-child(4)  { animation-delay: 0.44s; }
+    .page > *:nth-child(5)  { animation-delay: 0.56s; }
+    .page > *:nth-child(6)  { animation-delay: 0.68s; }
+    .page > *:nth-child(7)  { animation-delay: 0.80s; }
+    .page > *:nth-child(8)  { animation-delay: 0.92s; }
+    .page > *:nth-child(9)  { animation-delay: 1.04s; }
+    .page > *:nth-child(10) { animation-delay: 1.16s; }
+    .page > *:nth-child(11) { animation-delay: 1.28s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 580px) {
+      .page { padding: 56px 22px; }
+      .pillars { grid-template-columns: 1fr; }
+      .pillar-divider { display: none; }
+      .pillar { padding: 8px 0; }
+      .form-row { grid-template-columns: 1fr; gap: 14px; }
+      .corner { width: 26px; height: 26px; }
+      .corner.tl,.corner.tr { top: 14px; } .corner.tl,.corner.bl { left: 14px; }
+      .corner.tr,.corner.br { right: 14px; } .corner.bl,.corner.br { bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Fabric image background (rotated 90°, very low opacity) ─── -->
+  <!-- Save the fabric strips photo to this same folder as "fabric-bg.jpg" to activate -->
+  <div class="fabric-bg" aria-hidden="true"></div>
+
+
+  <!-- Corner Brackets -->
+  <div class="corner tl"><svg viewBox="0 0 36 36" fill="none"><path d="M2 34L2 2L34 2" stroke="#0D1A44" stroke-width="1.3"/><rect width="5" height="5" fill="#C9930A"/></svg></div>
+  <div class="corner tr"><svg viewBox="0 0 36 36" fill="none"><path d="M2 34L2 2L34 2" stroke="#0D1A44" stroke-width="1.3"/><rect width="5" height="5" fill="#C9930A"/></svg></div>
+  <div class="corner bl"><svg viewBox="0 0 36 36" fill="none"><path d="M2 34L2 2L34 2" stroke="#0D1A44" stroke-width="1.3"/><rect width="5" height="5" fill="#C9930A"/></svg></div>
+  <div class="corner br"><svg viewBox="0 0 36 36" fill="none"><path d="M2 34L2 2L34 2" stroke="#0D1A44" stroke-width="1.3"/><rect width="5" height="5" fill="#C9930A"/></svg></div>
+
+  <main class="page">
+
+    <!-- 1. Brand mark — typographic logo -->
+    <div class="brand-mark fade-in">
+      <div class="brand-word-neeli">नीली</div>
+      <div class="brand-thread">
+        <div class="brand-thread-line"></div>
+        <div class="brand-thread-dot"></div>
+        <div class="brand-thread-line"></div>
+      </div>
+      <div class="brand-word-dori">डोरी</div>
+      <div class="brand-tagline">The cloth you've been looking for.</div>
+    </div>
+
+    <!-- 3. Ornament + Launching badge -->
+    <div class="ornament fade-in">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamonds"><span></span><span></span><span></span></div>
+      <div class="ornament-line rev"></div>
+    </div>
+
+    <div class="launching-badge fade-in">
+      <div class="dot"></div>
+      <span>Launching Soon</span>
+      <div class="dot"></div>
+    </div>
+
+    <!-- 4. Headline (restored) -->
+    <h1 class="headline fade-in">
+      India's crafts have always spoken.<br>
+      We're here to make sure <strong>you</strong><br>
+      <em class="gold">hear them.</em>
+    </h1>
+
+    <!-- 5. First collection chips -->
+    <div class="first-launch fade-in">
+      <span class="first-launch-label">First Collection</span>
+      <div class="launch-items">
+        <span class="launch-item">Kurtis</span>
+        <span class="launch-item">Dresses</span>
+        <span class="launch-item">Blouses</span>
+        <span class="launch-item">Tops</span>
+      </div>
+    </div>
+
+    <!-- 6. Mission text — softer, human, no drama -->
+    <p class="mission-text fade-in">
+      We travel India's lanes — <em>Lucknow</em>, <em>Jaipur</em>, <em>Surat</em>, <em>Ahmedabad</em> —
+      to find its most honest cloth and bring it to you
+      in cuts that fit every body, in colours that feel just right,
+      at prices that don't make you think twice.
+    </p>
+
+    <!-- 7. Three pillars — icons + text only, no bold titles -->
+    <div class="pillars fade-in">
+      <div class="pillar">
+        <div class="pillar-icon">🪡</div>
+        <div class="pillar-desc">Every piece made by<br>real hands, real skill</div>
+      </div>
+      <div class="pillar-divider"></div>
+      <div class="pillar">
+        <div class="pillar-icon">🌿</div>
+        <div class="pillar-desc">The maker behind<br>every thread</div>
+      </div>
+      <div class="pillar-divider"></div>
+      <div class="pillar">
+        <div class="pillar-icon">🇮🇳</div>
+        <div class="pillar-desc">Cotton, prints & craft<br>from across the country</div>
+      </div>
+    </div>
+
+    <!-- 8. Ornament -->
+    <div class="ornament fade-in" style="margin-top:34px;">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamonds"><span></span><span></span><span></span></div>
+      <div class="ornament-line rev"></div>
+    </div>
+
+    <!-- 9. Minimalist form -->
+    <div class="connect-section fade-in">
+      <div class="connect-label">Join us on this journey</div>
+      <h2 class="connect-heading">
+        Are you a maker, a storyteller,<br>
+        or someone who believes in honest cloth?
+      </h2>
+
+      <form class="contact-form" name="interest" method="POST"
+            data-netlify="true" netlify-honeypot="bot-field"
+            onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="interest">
+        <p style="display:none;"><input name="bot-field"></p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-field">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="ftype">I am a…</label>
+          <select id="ftype" name="interest">
+            <option value="" disabled selected>Select what describes you</option>
+            <option value="customer">Someone excited to shop</option>
+            <option value="artisan">Artisan / Weaver / Craftsperson</option>
+            <option value="collaborator">Designer / Creative Collaborator</option>
+            <option value="storyteller">Writer / Photographer / Storyteller</option>
+            <option value="other">Something else entirely</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" name="message" placeholder="Say hello, or tell us a little about yourself…"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send</button>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-mark">✦</div>
+          <p>Thank you. Your message has found its way to us.<br>We'll be in touch.</p>
+          <small>— नीली डोरी</small>
+        </div>
+      </form>
+    </div>
+
+    <!-- 10. Bottom: email + instagram + brand whisper -->
+    <div class="bottom-contact fade-in">
+      <div class="contact-links">
+        <a href="mailto:support@neelidori.in" class="contact-link">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <rect x="0.5" y="0.5" width="10" height="8" rx="0.5" stroke="currentColor" stroke-width="0.8"/>
+            <path d="M0.5 1.5L5.5 5L10.5 1.5" stroke="currentColor" stroke-width="0.8"/>
+          </svg>
+          support@neelidori.in
+        </a>
+        <div class="contact-sep"></div>
+        <a href="https://instagram.com/neelidori" target="_blank" rel="noopener" class="contact-link">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <rect x="0.5" y="0.5" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="0.8"/>
+            <circle cx="5.5" cy="5.5" r="2.3" stroke="currentColor" stroke-width="0.8"/>
+            <circle cx="8.2" cy="2.8" r="0.7" fill="currentColor"/>
+          </svg>
+          @neelidori
+        </a>
+      </div>
+      <div class="bottom-brand">
+        <div class="brand-hindi-small">नीली डोरी</div>
+        <div class="bottom-url">neelidori.in</div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).finally(() => {
+        Array.from(form.children).forEach(el => {
+          if (!el.classList.contains('form-success')) el.style.display = 'none';
+        });
+        document.getElementById('formSuccess').style.display = 'flex';
+      });
+    }
+  </script>
+
+</body>
+</html>
