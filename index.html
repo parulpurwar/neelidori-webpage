@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="नीली डोरी — Women's clothing in cotton and Indian prints. Modest to modern. Launching soon.">
-  <meta property="og:title" content="नीली डोरी — The cloth you've been looking for.">
+  <meta property="og:title" content="नीली डोरी — Covered never meant quiet.">
   <title>नीली डोरी — Coming Soon</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
 
@@ -38,14 +38,25 @@
     }
 
     /* ─── Fabric image background ────────────────────── */
-    .fabric-bg {
+    /* Outer wrapper: position:fixed with NO transform — avoids iOS Safari
+       bug where transforms break fixed positioning.                        */
+    .fabric-bg-wrap {
       position: fixed; inset: 0;
       z-index: 0; pointer-events: none;
+      overflow: hidden;
+      opacity: 0.065;
+    }
+    /* Inner div: absolutely positioned, rotated, scaled safely */
+    .fabric-bg {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 165vmax; height: 165vmax;
+      margin-top: -82.5vmax; margin-left: -82.5vmax;
       background-image: url('Gemini_Generated_Image_8723yo8723yo8723.png');
       background-size: cover;
       background-position: center;
-      transform: rotate(90deg) scale(1.55);
-      opacity: 0.065;
+      transform: rotate(90deg);
+      will-change: transform;
     }
 
     /* ─── Corner Brackets ─────────────────────────────── */
@@ -78,34 +89,20 @@
 
     .brand-word-neeli {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: clamp(56px, 9vw, 90px);
+      font-size: clamp(38px, 6vw, 62px);
       font-weight: 300;
       color: var(--navy);
-      letter-spacing: 10px;
+      letter-spacing: 8px;
       line-height: 1;
-    }
-
-    /* thin gold thread between the two words */
-    .brand-thread {
-      display: flex; align-items: center;
-      gap: 8px; margin: 6px 0 4px;
-    }
-    .brand-thread-line {
-      width: 40px; height: 1px;
-      background: var(--gold); opacity: 0.7;
-    }
-    .brand-thread-dot {
-      width: 4px; height: 4px;
-      background: var(--gold);
-      border-radius: 50%; opacity: 0.85;
+      opacity: 0.82;
     }
 
     .brand-word-dori {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: clamp(62px, 10vw, 100px);
-      font-weight: 500;
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 400;
       color: var(--red);
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       line-height: 1;
     }
 
@@ -327,20 +324,88 @@
       text-transform: uppercase; opacity: 0.4;
     }
 
-    /* ─── Fade-in ─────────────────────────────────────── */
-    .fade-in { opacity: 0; transform: translateY(13px); animation: fadeUp 0.85s ease forwards; }
-    .page > *:nth-child(1)  { animation-delay: 0.08s; }
-    .page > *:nth-child(2)  { animation-delay: 0.20s; }
-    .page > *:nth-child(3)  { animation-delay: 0.32s; }
-    .page > *:nth-child(4)  { animation-delay: 0.44s; }
-    .page > *:nth-child(5)  { animation-delay: 0.56s; }
-    .page > *:nth-child(6)  { animation-delay: 0.68s; }
-    .page > *:nth-child(7)  { animation-delay: 0.80s; }
-    .page > *:nth-child(8)  { animation-delay: 0.92s; }
-    .page > *:nth-child(9)  { animation-delay: 1.04s; }
-    .page > *:nth-child(10) { animation-delay: 1.16s; }
-    .page > *:nth-child(11) { animation-delay: 1.28s; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    /* ─── Reveal on scroll (JS-driven) ───────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.75s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Brand mark: gentle float ────────────────────── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+    .brand-mark {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* ─── Launching badge glow ─────────────────────────── */
+    @keyframes badgeGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(13,26,68,0); }
+      50%       { box-shadow: 0 0 0 4px rgba(13,26,68,0.07); }
+    }
+    .launching-badge {
+      animation: badgeGlow 3s ease-in-out infinite;
+    }
+
+    /* ─── Pillar hover lift ─────────────────────────────── */
+    .pillar {
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      cursor: default;
+    }
+    .pillar:hover { transform: translateY(-4px); }
+
+    /* ─── Form field: label slide up on focus ──────────── */
+    .form-field { position: relative; }
+    .form-field input:focus ~ label,
+    .form-field textarea:focus ~ label { color: var(--navy); }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      transition: border-color 0.3s ease;
+    }
+
+    /* ─── Submit button smooth press ───────────────────── */
+    .form-submit {
+      transition: background 0.3s ease, transform 0.15s ease, letter-spacing 0.3s ease;
+    }
+    .form-submit:hover {
+      transform: translateY(-1px);
+      letter-spacing: 6px;
+    }
+    .form-submit:active { transform: translateY(1px); }
+
+    /* ─── Ornament line: draw in on reveal ─────────────── */
+    @keyframes drawLine {
+      from { width: 0; opacity: 0; }
+      to   { width: 68px; opacity: 1; }
+    }
+    .ornament.visible .ornament-line {
+      animation: drawLine 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* ─── Contact links ─────────────────────────────────── */
+    .contact-link {
+      transition: color 0.3s, border-color 0.3s, letter-spacing 0.3s;
+    }
+    .contact-link:hover { letter-spacing: 3px; }
+
+    /* ─── Launch chips hover ────────────────────────────── */
+    .launch-item {
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      cursor: default;
+    }
+    .launch-item:hover {
+      background: var(--navy);
+      color: var(--cream);
+      border-color: var(--navy);
+    }
 
     @media (max-width: 580px) {
       .page { padding: 56px 22px; }
@@ -357,8 +422,10 @@
 <body>
 
   <!-- ─── Fabric image background (rotated 90°, very low opacity) ─── -->
-  <!-- Save the fabric strips photo to this same folder as "fabric-bg.jpg" to activate -->
-  <div class="fabric-bg" aria-hidden="true"></div>
+  <!-- Wrapper has position:fixed (no transform) so iOS Safari renders correctly -->
+  <div class="fabric-bg-wrap" aria-hidden="true">
+    <div class="fabric-bg"></div>
+  </div>
 
 
   <!-- Corner Brackets -->
@@ -372,13 +439,8 @@
     <!-- 1. Brand mark — typographic logo -->
     <div class="brand-mark fade-in">
       <div class="brand-word-neeli">नीली</div>
-      <div class="brand-thread">
-        <div class="brand-thread-line"></div>
-        <div class="brand-thread-dot"></div>
-        <div class="brand-thread-line"></div>
-      </div>
       <div class="brand-word-dori">डोरी</div>
-      <div class="brand-tagline">The cloth you've been looking for.</div>
+      <div class="brand-tagline">Prints that dare. Cuts that care.</div>
     </div>
 
     <!-- 3. Ornament + Launching badge -->
@@ -394,11 +456,10 @@
       <div class="dot"></div>
     </div>
 
-    <!-- 4. Headline (restored) -->
+    <!-- 4. Headline -->
     <h1 class="headline fade-in">
       India's crafts have always spoken.<br>
-      We're here to make sure <strong>you</strong><br>
-      <em class="gold">hear them.</em>
+      We made sure <strong>you'd</strong> <em class="gold">hear them.</em>
     </h1>
 
     <!-- 5. First collection chips -->
@@ -449,8 +510,8 @@
     <div class="connect-section fade-in">
       <div class="connect-label">Join us on this journey</div>
       <h2 class="connect-heading">
-        Are you a maker, a storyteller,<br>
-        or someone who believes in honest cloth?
+        Are you a weaver, a supplier,<br>
+        or someone who just loves what India makes?
       </h2>
 
       <form class="contact-form" name="interest" method="POST"
@@ -526,9 +587,72 @@
   </main>
 
   <script>
+    /* ── 1. Scroll-triggered reveal ───────────────────────
+       Each .fade-in gets .visible when it enters the viewport.
+       Staggered by index so elements cascade in naturally.   */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, _) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('fade-in'));
+          const idx = siblings.indexOf(el);
+          setTimeout(() => el.classList.add('visible'), idx * 90);
+          revealObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => revealObserver.observe(el));
+
+    /* ── 2. Parallax on background ────────────────────────
+       Mouse moves gently shift the inner fabric element.
+       Outer wrapper stays fixed with no transform (iOS-safe). */
+    const fabricBg  = document.querySelector('.fabric-bg');
+    const fabricWrap = document.querySelector('.fabric-bg-wrap');
+    let mx = 0, my = 0, cx = 0, cy = 0;
+
+    // Only add mouse parallax on non-touch devices
+    const hasPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (hasPointer) {
+      document.addEventListener('mousemove', e => {
+        mx = (e.clientX / window.innerWidth  - 0.5) * 14;
+        my = (e.clientY / window.innerHeight - 0.5) * 14;
+      });
+    }
+    function animParallax() {
+      cx += (mx - cx) * 0.06;
+      cy += (my - cy) * 0.06;
+      if (fabricBg) {
+        fabricBg.style.transform = `rotate(90deg) translate(${cx}px, ${cy}px)`;
+      }
+      requestAnimationFrame(animParallax);
+    }
+    animParallax();
+
+    /* ── 3. Scroll parallax: fade background slightly ─────  */
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (fabricWrap) fabricWrap.style.opacity = Math.max(0.03, 0.065 - y * 0.00006);
+    }, { passive: true });
+
+    /* ── 4. Ornament lines draw-in on reveal ──────────────  */
+    const ornamentObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          ornamentObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.ornament').forEach(el => ornamentObserver.observe(el));
+
+    /* ── 5. Form submit ───────────────────────────────────  */
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = '···';
+      btn.style.letterSpacing = '8px';
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -537,7 +661,11 @@
         Array.from(form.children).forEach(el => {
           if (!el.classList.contains('form-success')) el.style.display = 'none';
         });
-        document.getElementById('formSuccess').style.display = 'flex';
+        const s = document.getElementById('formSuccess');
+        s.style.display = 'flex';
+        s.style.opacity = '0';
+        s.style.transition = 'opacity 0.6s ease';
+        requestAnimationFrame(() => { s.style.opacity = '1'; });
       });
     }
   </script>
