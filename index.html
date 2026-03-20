@@ -133,8 +133,7 @@
     /* ─── Launching badge ─────────────────────────────── */
     .launching-badge {
       display: inline-flex; align-items: center; gap: 10px;
-      border: 1px solid rgba(13,26,68,0.45);
-      padding: 9px 24px; margin-bottom: 28px;
+      padding: 0; margin-top: 28px; margin-bottom: 10px;
     }
     .launching-badge span {
       font-family: 'Josefin Sans', sans-serif;
@@ -205,6 +204,16 @@
     .pillar-desc {
       font-size: 14px; font-style: italic;
       color: var(--text-soft); line-height: 1.55; font-weight: 400;
+    }
+
+    /* ─── Values section (below form) ───────────────────── */
+    .values-section {
+      width: 100%; max-width: 500px;
+      margin-top: 44px;
+      display: flex; flex-direction: column;
+      align-items: center;
+      border-top: 1px solid rgba(13,26,68,0.08);
+      padding-top: 36px;
     }
 
     /* ─── Contact form ────────────────────────────────── */
@@ -344,14 +353,6 @@
       animation: float 6s ease-in-out infinite;
     }
 
-    /* ─── Launching badge glow ─────────────────────────── */
-    @keyframes badgeGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(13,26,68,0); }
-      50%       { box-shadow: 0 0 0 4px rgba(13,26,68,0.07); }
-    }
-    .launching-badge {
-      animation: badgeGlow 3s ease-in-out infinite;
-    }
 
     /* ─── Pillar hover lift ─────────────────────────────── */
     .pillar {
@@ -449,19 +450,13 @@
       <div class="ornament-line rev"></div>
     </div>
 
-    <div class="launching-badge fade-in">
-      <div class="dot"></div>
-      <span>Launching Soon</span>
-      <div class="dot"></div>
-    </div>
-
     <!-- 4. Headline -->
     <h1 class="headline fade-in">
       India's crafts have always spoken.<br>
       We made sure <strong>you'd</strong> <em class="gold">hear them.</em>
     </h1>
 
-    <!-- 5. First collection chips -->
+    <!-- 5. First collection chips + Launching badge -->
     <div class="first-launch fade-in">
       <span class="first-launch-label">First Collection</span>
       <div class="launch-items">
@@ -472,13 +467,11 @@
       </div>
     </div>
 
-    <!-- 6. Mission text — softer, human, no drama -->
-    <p class="mission-text fade-in">
-      We travel India's lanes — <em>Lucknow</em>, <em>Jaipur</em>, <em>Surat</em>, <em>Ahmedabad</em> —
-      to find its most honest cloth and bring it to you
-      in cuts that fit every body, in colours that feel just right,
-      at prices that don't make you think twice.
-    </p>
+    <div class="launching-badge fade-in">
+      <div class="dot"></div>
+      <span>Launching Soon</span>
+      <div class="dot"></div>
+    </div>
 
     <!-- 7. Three pillars — icons + text only, no bold titles -->
     <div class="pillars fade-in">
@@ -557,7 +550,18 @@
       </form>
     </div>
 
-    <!-- 10. Bottom: email + instagram + brand whisper -->
+    <!-- 10. Our values / mission — below the form -->
+    <div class="values-section fade-in">
+      <div class="connect-label" style="margin-bottom:14px;">Who We Are</div>
+      <p class="mission-text" style="margin-top:0;">
+        We travel India's lanes — <em>Lucknow</em>, <em>Jaipur</em>, <em>Surat</em>, <em>Ahmedabad</em> —
+        to find its most honest cloth and bring it to you
+        in cuts that fit every body, in colours that feel just right,
+        at prices that don't make you think twice.
+      </p>
+    </div>
+
+    <!-- 11. Bottom: email + instagram + brand whisper -->
     <div class="bottom-contact fade-in">
       <div class="contact-links">
         <a href="mailto:support@neelidori.in" class="contact-link">
